@@ -15,11 +15,31 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create Viewer account
+        User::create([
+            'name' => 'Viewer User',
+            'email' => 'viewer@example.com',
+            'password' => bcrypt('password'),
+            'role' => 'viewer',
+            'kontak' => '081234567890',
+        ]);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Create Petugas account
+        User::create([
+            'name' => 'Petugas User',
+            'email' => 'petugas@example.com',
+            'password' => bcrypt('password'),
+            'role' => 'petugas',
+            'nip' => 'NIP123456',
+            'kontak' => '081234567891',
+        ]);
+
+        // Seed all entities in proper order (respecting foreign keys)
+        $this->call([
+            KorbanSeeder::class,
+            KasusSeeder::class,
+            EvidenceSeeder::class,
+            TindakanForensikSeeder::class,
         ]);
     }
 }
