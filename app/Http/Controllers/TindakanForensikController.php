@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TindakanForensik;
+use App\Models\TIndakanForensik;
 use Illuminate\Http\Request;
 
 class TindakanForensikController extends Controller
 {
     public function index()
     {
-        return TindakanForensik::with('kasus')->get();
+        return TIndakanForensik::with('kasus')->get();
     }
 
     public function show($id)
     {
-        $data = TindakanForensik::with('kasus')->find($id);
+        $data = TIndakanForensik::with('kasus')->find($id);
 
         if (!$data) {
             return response()->json(['message' => 'Tindakan tidak ditemukan'], 404);
@@ -37,7 +37,7 @@ class TindakanForensikController extends Controller
         // checklist otomatis
         $checklist = $request->status_tindakan === 'completed';
 
-        $data = TindakanForensik::create([
+        $data = TIndakanForensik::create([
             ...$request->all(),
             'checklist' => $checklist
         ]);
@@ -50,7 +50,7 @@ class TindakanForensikController extends Controller
 
     public function update(Request $request, $id)
     {
-        $data = TindakanForensik::find($id);
+        $data = TIndakanForensik::find($id);
 
         if (!$data) {
             return response()->json(['message' => 'Tindakan tidak ditemukan'], 404);
@@ -72,7 +72,7 @@ class TindakanForensikController extends Controller
 
     public function destroy($id)
     {
-        $data = TindakanForensik::find($id);
+        $data = TIndakanForensik::find($id);
 
         if (!$data) {
             return response()->json(['message' => 'Tindakan tidak ditemukan'], 404);

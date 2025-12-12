@@ -30,7 +30,7 @@ class EvidenceController extends Controller
             'jenis_bukti' => 'required|string',
             'lokasi_penyimpanan' => 'required|string',
             'hash_value' => 'required|string',
-            'waktu_pengambilan' => 'required|date'
+            'waktu_pengambilan_bukti' => 'required|date'
         ]);
 
         $evidence = Evidence::create($request->all());
